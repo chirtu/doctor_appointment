@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//make home route
+Route::get('/home',[HomeController::class,'redirect']);
+
+//make home route
+Route::get('/',[HomeController::class,'index']);
+
 
 Route::middleware([
     'auth:sanctum',
