@@ -18,12 +18,24 @@
     <div class="container-scroller">
         
     
-
     @include('admin.sidebar')
 
     @include('admin.navbar')
 
     <div class="container-fluid page-body-wrapper">
+
+
+@if(session()->has('messages'))
+
+
+<div class="alert alert-success">
+
+    <button type="button" class="close" data-dismiss="alert">X</button>
+
+    {{session()->get('messages')}}
+</div>
+@endif
+
         
         <div class="container" style="padding-top:100px;">
 
@@ -34,6 +46,7 @@
               <label for="doctor_name">Doctor Name</label>
     
               <input type="text" name="name" id="name" 
+              required=""
               style="color: black;"
               placeholder="write the name">
     
@@ -43,7 +56,7 @@
     
               <label for="phone">phone number</label>
     
-              <input type="number" name="phone" id="phone" 
+              <input type="number" name="phone" id="phone" required=""
               style="color: black;"
               placeholder="write the phone number">
     
@@ -58,9 +71,10 @@
                 <option value="">--Select--</option>
                 <option value="Eye" style="color: black">Eye</option>
                 <option value="Dental" style="color: black">Dental</option>
+                <option value="Skin" style="color: black">Skin</option>
                 <option value="Heart" style="color: black">Heart</option>
                 <option value="Women and Children" style="color: black">Women and Children</option>
-    
+
               </select>
             </div>
     

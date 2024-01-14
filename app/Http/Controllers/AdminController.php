@@ -16,17 +16,26 @@ class AdminController extends Controller
 
     //post function
     public function uploaddoctor(Request $request){
-        $doctor = new doctor;
-        $image  = $request->image;
-        $imagename= time().'.'.$image->getClientoriginalExtenstion();  
-        $request->file->move('doctorimage',$imagename);
-        $doctor->image=$imagename;
-
+        $doctor = new Doctor;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imagename = time() . '.' . $image->getClientOriginalExtension();  
+            $image->move('doctorimage', $imagename);
+            $doctor->image = $imagename;
+        } else {
+            // Handle the case where no file is provided.
+            // You might want to return an error response or set a default image.
+        }
+    
 //$doctor is model, center name is a column in table,  request name from the form.
         $doctor->name=$request->name;
         $doctor->phone=$request->phone;
         $doctor->specialization=$request->specialization;
         $doctor->room_number=$request->room_number;
+
+        $doctor->save();
+
+        return redirect()->back()->with('message','Doctor Saved Successully');
 
     }
 }
