@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,5 +35,9 @@ Route::middleware([
 
 
 
-//make home route
+//make add doctor route
 Route::get('/add_doctor_view',[AdminController::class,'addview']);
+
+
+//make home route
+Route::get('/upload_doctor',[AdminController::class,'uploaddoctor']);
